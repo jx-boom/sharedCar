@@ -1,0 +1,52 @@
+{
+  "_from": "mpvue-calendar",
+  "_id": "mpvue-calendar@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-f40XvghBIgPuVTVreLYQZJVjbQo=",
+  "_location": "/mpvue-calendar",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "mpvue-calendar",
+    "name": "mpvue-calendar",
+    "escapedName": "mpvue-calendar",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/mpvue-calendar/download/mpvue-calendar-1.0.3.tgz",
+  "_shasum": "7f8d17be08412203ee55356b78b6106495636d0a",
+  "_spec": "mpvue-calendar",
+  "_where": "C:\\Users\\Administrator\\Desktop\\car\\car-bata",
+  "author": {
+    "name": "hzy"
+  },
+  "bugs": {
+    "url": "https://github.com/Hzy0913/mpvue-calendar/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "mpvue calendar",
+  "homepage": "https://github.com/Hzy0913/mpvue-calendar#readme",
+  "keywords": [
+    "mpvue",
+    "calendar",
+    "小程序"
+  ],
+  "license": "ISC",
+  "main": "./src/mpvue-calendar.vue",
+  "name": "mpvue-calendar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hzy0913/mpvue-calendar.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
+}

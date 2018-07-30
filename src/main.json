@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/custom/main",
+    "pages/myCar/main",
+    "pages/login/main",
+    "pages/indexMap/main",
+    "pages/trackList/main",
+    "pages/setCenter/main",
+    "pages/carInfo/main",
+    "pages/calendar/main",
+    "pages/indexhome/main",
+    "pages/message/main",
+    "pages/messageDetial/main",
+    "pages/mine/main",
+    "pages/opinion/main",
+    "pages/Packet/main",
+    "pages/disclaimer/main",
+    "pages/trackDetial/main",
+    "pages/userNotes/main"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true,
+    "navigationBarBackgroundColor": "#313a43",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  }
+}

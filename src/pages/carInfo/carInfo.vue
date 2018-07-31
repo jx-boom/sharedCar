@@ -25,7 +25,12 @@
        <div class="inputPLace">KM</div>
       </div>
     <div class="radioLine">
-    剩余电量 {{car.electricity}}% <div class="box"></div>  勿扰模式: <switch v-bind:checked="car.undisturbed==1" @change="changeSwitch" /></div>
+    剩余电量 {{car.electricity}}%
+      <span class="checkBox" @click="setS">
+   <i class="check" :class="{'show':car.eqStatus==0}"></i>
+ </span>
+
+      <div class="box"></div>  勿扰模式: <switch v-bind:checked="car.undisturbed==1" @change="changeSwitch" /></div>
      <div>
    <span class="checkBox" @click="setM">
    <i class="check" :class="{'show':car.eqDefault==0}"></i>
@@ -76,8 +81,7 @@
       if(this.$mp.query.car!=null){
         let car = JSON.parse(this.$mp.query.car)
         this.car=  car;
-        console.log(car);
-
+        this.radius= this.car.radius;
         this.carName=  this.car.rollatorName?this.car.rollatorName:'智能车';
       }
       else{
@@ -89,8 +93,14 @@
       }
     },
     "methods":{
+      setS(){
+        this.car.eqStatus=this.car.eqStatus==0?1:0;
+      },
       change(r){
-        this.radius=Number(this.radius).toFixed(0)
+        this.radius=Number(this.radius).toFixed(2);
+        if(this.radius>100){
+          this.radius= 100;
+        }
       },
       changeSwitch(){
         this.car.undisturbed= this.car.undisturbed=0?1:0;
@@ -98,8 +108,8 @@
 
       },
       goSetCenter(){
+        this.car.radius= this.radius
         let car = JSON.stringify(this.car);
-        console.log(car);
         var url = `../setCenter/main?car=`+JSON.stringify(car)+'&latitude='+this.car.rolLatitude+'&longitude='+this.car.rolLongitude;
         wx.navigateTo({ url });
         // wx.setNavigationBarTitle({
@@ -132,8 +142,30 @@
           return
         }
 
-
-
+        if(data.name.length>6){
+   wx.showToast({
+     title: '名称不得超过六个字',
+     icon: 'none',
+     duration: 2000
+   });
+   return
+ }
+        if(data.imeiId.length>20){
+          wx.showToast({
+            title: '设备编号不正确',
+            icon: 'none',
+            duration: 2000
+          });
+          return
+        }
+        if(data.radius.length>=10){
+          wx.showToast({
+            title: '半径过大',
+            icon: 'none',
+            duration: 2000
+          });
+          return
+        }
         delete data.rolLatitude;
         delete data.rolLongitude;
         delete data.first;

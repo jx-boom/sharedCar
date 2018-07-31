@@ -1,6 +1,6 @@
 <template>
   <div class="message">
-<div class="msg" v-for="msg in msgList" :key="msg.id"  @click="toDetial(msg)">
+<div class="msg" v-show="msgList.length!=0" v-for="msg in msgList" :key="msg.id"  @click="toDetial(msg)">
   <div class="data">{{msg.createDate }}</div>
   <div class="type" :class="msg.type"></div>
   <div class="tit">{{msg.content}}</div>
@@ -10,6 +10,13 @@
   <div class="to"></div>
 
 </div>
+
+
+   <!--<div class="unMsg" v-show="msgList.length==0">-->
+   <div v-show="msgList.length==0" class="unMsg" >
+     您暂时没有消息
+   </div>
+
     <div class="nav">
       <span class="btn" @click="go('index')"><div class="hx"></div><span class="text">护行</span></span>
       <span class="btn" @click="go('indexhome')" ><div class="xj"></div><span class="text">行迹</span></span>
@@ -218,6 +225,15 @@
   margin-left: 5%;
   margin-top: 30px;
   margin-bottom: 10px;
+}
+.unMsg{
+  width: 100%;
+  height: 100%;
+  padding-top: 45%;
+  box-sizing: border-box;
+  color: black;
+  text-align: center;
+  font-size: 25px;
 }
 .to{
   position: absolute;

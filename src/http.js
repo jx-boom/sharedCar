@@ -1,5 +1,7 @@
 import { request } from "../src/utils/request";
 var token= null;
+var number = null;
+
 
 var getInfo= function() {
   request('get', 'opinionList',null,token).then(res=>{
@@ -38,7 +40,7 @@ var addCar= function(data,fn) {
 };
 var login= function(data,fn) {
   //+'&code='+data.code+'&openId='+data.openId
-
+  number=data.phone;
   request('get', 'login?phone='+data.phone+'&code='+data.code,null,token).then(res=>{
     if(res.code==0){
       token =res.data.key
@@ -87,6 +89,12 @@ var getTrackDetial= function(imeiId,date,fn) {
     fn(res)
   })
 };
+var delRollator= function(imeiId,fn) {
+
+  request('get', 'delRollator?id='+imeiId,null,token).then(res=>{
+    fn(res)
+  })
+};
 
 var clear= function() {
   token= null;
@@ -105,5 +113,6 @@ export default {
   getAgreement,
   getTrackDetialList,
   getTrackDetial,
+  delRollator,
   messageSave,
   getCode  }

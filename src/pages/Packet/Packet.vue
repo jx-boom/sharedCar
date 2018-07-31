@@ -54,7 +54,7 @@ export default {
     "name": 'packet',
     "methods":{
         toRech(){
-        this.money+=this.fouce*1;
+        // this.money+=this.fouce*1;
         this.showZZ= true;
 
         },

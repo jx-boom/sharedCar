@@ -126,7 +126,7 @@
           wx.redirectTo({ url:`../login/main` })
           return
         }
-        wx.redirectTo({ url:`../myCar/main` })
+        wx.redirectTo({ url:`../carInfo/main` })
         // wx.setNavigationBarTitle({
         //   title: '绑定'
         // });

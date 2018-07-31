@@ -56,14 +56,16 @@
 
           return
         }
-        if(this.code!=this.realCode||!this.realCode){
+        if(!this.code){
           wx.showToast({
-            title: '验证码不正确',
+            title: '请输入验证码',
             icon: 'none',
             duration: 2000
           });
+
           return
         }
+
        if(!this.show){
          wx.showToast({
            title: '请确认遵守用户须知',
@@ -90,6 +92,13 @@
              title: '行迹'
            });
          }
+         else if(res.code==1){
+           wx.showToast({
+             title: res.msg,
+             icon: 'none',
+             duration: 2000
+           });
+         }
          else{
            wx.showToast({
              title: '绑定失败',
@@ -106,7 +115,13 @@
           http.getCode(this.number,(res) => {
           if(res.code==0){
             this.realCode= res.msgCode;
-
+          }
+          else if(res.code==2){
+            wx.showToast({
+              title: res.msg,
+              icon: 'none',
+              duration: 2000
+            })
           }
           else{
             wx.showToast({
@@ -230,7 +245,7 @@
     border-radius: 6px;
     background-color: #34d073;
     line-height: 44px;
-    /*margin-top: 55px;*/
+    margin-top: 5px;
     text-align: center;
     color: #ffffff;
     font-size: 20px;
@@ -245,7 +260,8 @@
   .getBtn{
    float: right;
    color: #35d074;
-    width: 100px;
+   width: 140px;
+   text-align: right;
  }
   .getting{
     color: #4c5660;

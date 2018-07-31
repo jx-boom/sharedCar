@@ -32,17 +32,21 @@
     },
     methods:{
       transTime(stmp){
-        var time = new Date(stmp*1);
-        var now = new Date();
-        var m = time.getMonth()+1;
-        var d = time.getDate();
-        if(now.getMonth()+1==m){
-          if(time.getDate()==d){
-            return '今天'
-          }
-        }
-        return m+'.'+d;
-      },
+    var time = new Date(stmp*1);
+    var now = new Date();
+    var m = time.getMonth()+1;
+    var d = time.getDate();
+
+    if(now.getMonth()+1==m){
+      if(time.getDate()==now.getDate()){
+        return '今天'
+      }
+      if(time.getDate()==(now.getDate()-1)){
+        return '昨天'
+      }
+    }
+    return m+'.'+d;
+  },
       opinionSave(){
        let data ={
          'conmessage': this.opinion

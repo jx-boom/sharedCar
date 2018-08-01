@@ -21,7 +21,8 @@ export default {
     indexMap,
     "navBar": nav
   },
-  onShow(){
+  "onShow"(){
+    console.log("index show");
     wx.setNavigationBarTitle({
       title: '护行'
     });
@@ -59,26 +60,26 @@ export default {
     }
   },
   created () {
-
-
-    let data ={
-      openId: '666',
-      // phone: this.number,
-      phone: 12845214638,
-      code: 0
-    };
-    http.login(data,(res) => {
-      http.getCarList( (res) => {
-        if(res.code==0){
-
-          console.log(res);
-
-        }})
-
-
-
-
-    });
+    //
+    //
+    // let data ={
+    //   openId: '666',
+    //   // phone: this.number,
+    //   phone: 12845214638,
+    //   code: 0
+    // };
+    // http.login(data,(res) => {
+    //   http.getCarList( (res) => {
+    //     if(res.code==0){
+    //
+    //       console.log(res);
+    //
+    //     }})
+    //
+    //
+    //
+    //
+    // });
 
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()

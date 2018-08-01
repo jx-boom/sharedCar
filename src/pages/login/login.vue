@@ -92,10 +92,8 @@
            var num = this.number;
            wx.setStorageSync("number", num );
            var url = `../${route}/main`;
-           wx.navigateTo({ url });
-           wx.setNavigationBarTitle({
-             title: '行迹'
-           });
+           wx.redirectTo({ url });
+
          }
          else if(res.code==1){
            wx.showToast({
@@ -150,47 +148,8 @@
           }
         },1000)
 
-      },
-      getInfo(){
-        http.getInfo()
-      },
-      messageSave(){
-        http.messageSave()
-      },
-      getCode(){
-        http.getCode(() => {})
-      },
-      getCarList(){
-        http.getCarList(() => {})
-      },
-      getMessageList(){
-        http.getMessageList(() => {})
-      },
-      getMessageDetial(){
-        http.getMessageDetial(5263,() => {})
-      },
-      addCar(){
-        http.addCar(() => {})
-      },
-      login(){
-        http.login(() => {})
-      },
-      opinionSave(){
-        http.opinionSave(() => {})
-      },
-      getOpinionList(){
-        http.getOpinionList(() => {})
-      },
-      getAgreement(){
-        http.getAgreement(1)
-
-      },
-      getTrackDetialList(){
-        http.getTrackDetialList(359339075216250,Date.parse(new Date())  ,()=> {})
-      },
-      getTrackDetial(){
-        http.getTrackDetial(359339075216250,Date.parse(new Date()),() => {})
       }
+
     },
     onShow(){
       wx.setNavigationBarTitle({

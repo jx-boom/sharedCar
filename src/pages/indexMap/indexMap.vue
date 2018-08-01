@@ -38,7 +38,7 @@
     },
     onShow () {
       that= this;
-
+      console.log("indexMap show");
       wx.getStorage({
         key: 'TOKEN',
         success: function(res) {
@@ -102,8 +102,6 @@
                 });
               }
             }
-
-
           })
         },
         fail: (res) => {

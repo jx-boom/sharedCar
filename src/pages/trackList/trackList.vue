@@ -261,12 +261,7 @@
     "mounted"(){
       let first=   wx.getStorageSync('isfirst');
       wx.setStorageSync('isfirst', '0');
-      if(this.checkID&&first!=1){
-        // this.checkID= null;
-        console.log("不请求");
-        return;
 
-      }
       if(!wx.getStorageSync('number')){
         console.log("电话不存在");
         this.truckList=[];
@@ -352,12 +347,7 @@
 
    let first=   wx.getStorageSync('isfirst');
       wx.setStorageSync('isfirst', '0');
-      if(this.checkID&&first!=1){
-       // this.checkID= null;
-        console.log("不请求");
-        return;
 
-     }
       if(!wx.getStorageSync('number')){
         this.truckList=[];
         this.carList=[];
@@ -424,7 +414,6 @@
         }
         this.carList= JSON.parse(JSON.stringify(this.carList))
         this.checkCar(this.carList[0])
-        console.log(this.carList);
       }
       console.log(this.carList);
     }

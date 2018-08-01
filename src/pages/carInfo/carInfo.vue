@@ -17,7 +17,7 @@
        <span class="label secondLab">护栏半径:</span>
        <input
          @blur="change"
-         type="number"
+         type="digit"
          style="padding-left: 10px;transform:translateY(-2px)"
          v-model="radius"
          class="intNum"/>
@@ -103,11 +103,13 @@
         }
       },
       changeSwitch(){
-        this.car.undisturbed= this.car.undisturbed=0?1:0;
+        this.car.undisturbed= this.car.undisturbed==0?1:0;
 
 
       },
       goSetCenter(){
+        console.log("goSetCenter");
+
         this.car.radius= this.radius
         let car = JSON.stringify(this.car);
         var url = `../setCenter/main?car=`+JSON.stringify(car)+'&latitude='+this.car.rolLatitude+'&longitude='+this.car.rolLongitude;
@@ -125,8 +127,6 @@
         data.longitude=data.rolLongitude;
         data.radius= this.radius;
 
-        console.log(this.radius);
-        console.log("radius");
 
         if(
           data.rollatorName==''||
@@ -184,9 +184,17 @@
               data.longitude=res.longitude;
               data.latitude=res.latitude
               http.addCar(data,(res) => {
-                if(res.code!=0){
+                if(res.code==1){
                   wx.showToast({
-                    title: '编辑失败',
+                    title: res.msg,
+                    icon: 'none',
+                    duration: 2000
+                  });
+                  return
+                }
+                else if(res.code!=0){
+                  wx.showToast({
+                    title:'保存失败',
                     icon: 'none',
                     duration: 2000
                   });
@@ -214,14 +222,22 @@
 
 
         http.addCar(data,(res) => {
-        if(res.code!=0){
-          wx.showToast({
-            title: '编辑失败',
-            icon: 'none',
-            duration: 2000
-          });
-          return
-        }
+          if(res.code==1){
+            wx.showToast({
+              title: res.msg,
+              icon: 'none',
+              duration: 2000
+            });
+            return
+          }
+          else if(res.code!=0){
+            wx.showToast({
+              title:'保存失败',
+              icon: 'none',
+              duration: 2000
+            });
+            return
+          }
           var url = `../${route}/main`;
           wx.redirectTo({ url });
           wx.setNavigationBarTitle({
@@ -232,6 +248,7 @@
 
       },
       setM(){
+        console.log("setM");
         this.car.eqDefault= this.car.eqDefault==0?1:0;
       },
       setLast(){

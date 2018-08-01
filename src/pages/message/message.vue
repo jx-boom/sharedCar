@@ -3,7 +3,7 @@
 <div class="msg" v-show="msgList.length!=0" v-for="msg in msgList" :key="msg.id"  @click="toDetial(msg)">
   <div class="data">{{msg.createDate }}</div>
   <div class="type" :class="msg.type"></div>
-  <div class="tit">{{msg.content}}</div>
+  <div class="tit">{{msg.title}}</div>
   <div class="time">{{msg.time}}</div>
   <div class="content">{{msg.content}}</div>
 

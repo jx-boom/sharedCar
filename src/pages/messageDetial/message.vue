@@ -3,7 +3,7 @@
 <div class="msg" v-for="msg in msgList" :key="msg.id">
   <div class="data">{{msg.createDate}}</div>
   <div class="type" :class="msg.type"></div>
-  <div class="tit">{{msg.tit}}</div>
+  <div class="tit">{{msg.title}}</div>
   <div class="time">{{msg.time}}</div>
   <div class="content">&nbsp;{{msg.content}}</div>
   <i :class="{unread:msg.isNewRecord==true}"></i>

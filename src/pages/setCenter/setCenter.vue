@@ -279,6 +279,6 @@
     margin-bottom: 5%;
     font-size: 15px;
     color: #fff;
-
+    z-index: 999;
   }
 </style>

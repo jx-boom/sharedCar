@@ -1,5 +1,5 @@
 import { request } from "../src/utils/request";
-var token= null;
+var token= wx.getStorageSync('token');
 var number = null;
 function reLog(res){
   if(res.code==3){
@@ -57,7 +57,8 @@ var login= function(data,fn) {
   request('get', 'login?phone='+data.phone+'&code='+data.code,null,token).then(res=>{
     reLog(res)
     if(res.code==0){
-      token =res.data.key
+      token =res.data.key;
+      wx.setStorageSync('token',res.data.key);
     }
     fn(res)
   })

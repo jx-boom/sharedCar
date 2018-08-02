@@ -1,17 +1,17 @@
 <template>
   <div class="message">
+    <scroll-view scroll-y style="height:calc(100% - 50px)">
 <div class="msg" v-show="msgList.length!=0" v-for="msg in msgList" :key="msg.id"  @click="toDetial(msg)">
-  <div class="data">{{msg.createDate }}</div>
+  <div class="data">{{msg.$day }}</div>
+  <div class="day">{{msg.day }}</div>
   <div class="type" :class="msg.type"></div>
   <div class="tit">{{msg.title}}</div>
-  <div class="time">{{msg.time}}</div>
   <div class="content">{{msg.content}}</div>
 
   <div class="to"></div>
 
 </div>
-
-
+    </scroll-view>
    <!--<div class="unMsg" v-show="msgList.length==0">-->
    <div v-show="msgList.length==0" class="unMsg" >
      您暂时没有消息
@@ -110,15 +110,45 @@
           }
         }
         this.msgList= res.data;
+
         var tType= [
           'a',
           'b',
           'c'
         ];
-        for(var msg of this.msgList){
-          msg.type=tType[msg.msgtype]
-        }
+       function transDay(day){
+         let t= new Date(day*1),
+            m= t.getMonth()+1,
+            d= t.getDate();
+         return m+'月'+d+'日';
+       }
+       function transTime(day) {
+         let t= new Date(day*1),
+            h=  t.getHours()<10?'0'+t.getHours():t.getHours(),
+            s= t.getMinutes()<10?'0'+t.getMinutes():t.getMinutes(),
+            m= t.getMonth()+1,
+            d= t.getDate();
+           if(t.getMonth()==new Date().getMonth()){
+             if(d==new Date().getDate()){
+               return '今天 '+ h+':'+s;
+             }
+              if((Date.parse(new Date()) - day*1)< 86400000){
+               return    '昨天 '+ h+':'+s;
+              }
+           }
+           else{
+             return m+'月'+d+'日'
 
+           }
+       }
+        for(var msg of this.msgList){
+          msg.type=tType[msg.msgtype];
+          msg.day= transDay(msg.time);
+          msg.$day= transTime(msg.time)
+
+        }
+        console.log(this.msgList);
+        console.log("this.msgList");
       })
     },
     mounted(){
@@ -141,10 +171,39 @@
      'b',
      'c'
    ];
-         for(var msg of this.msgList){
-           msg.type=tType[msg.msgtype]
-           msg.time= this.transTime(msg.time)
-         }
+        function transDay(day){
+          let t= new Date(day*1),
+            m= t.getMonth()+1,
+            d= t.getDate();
+          return m+'月'+d+'日';
+        }
+        function transTime(day) {
+          let t= new Date(day*1),
+            h=  t.getHours()<10?'0'+t.getHours():t.getHours(),
+            s= t.getMinutes()<10?'0'+t.getMinutes():t.getMinutes(),
+            m= t.getMonth()+1,
+            d= t.getDate();
+          if(t.getMonth()==new Date().getMonth()){
+            if(d==new Date().getDate()){
+              return '今天 '+ h+':'+s;
+            }
+            if((Date.parse(new Date()) - day*1)< 86400000){
+              return    '昨天 '+ h+':'+s;
+            }
+          }
+          else{
+            return m+'月'+d+'日'
+
+          }
+        }
+        for(var msg of this.msgList){
+          msg.type=tType[msg.msgtype];
+          msg.day= transDay(msg.time);
+          msg.$day= transTime(msg.time)
+
+        }
+        console.log(this.msgList);
+        console.log("this.msgList");
       })
     },
     components:{
@@ -163,37 +222,50 @@
     box-shadow: 0 0 5px #802c0b;
     border-radius: 2px;
   }
+  .day{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: inline-block;
+    font-size: 11px;
+    color: #a9a9a9;
+  }
   .data{
     font-size: 11px;
     color: #a9a9a9;
     padding-top: 15px;
     text-align: center;
-    transform: translateY(-10px);
+    transform: translateY(-35px);
   }
   .time{
     font-size: 13px;
     color: #a9a9a9;
   }
   .tit{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-weight: 600 ;
     padding-left: 10px;
     width: 50%;
     height: 21px;
     line-height: 21px;
-
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    font-size: 16px;
+    transform: translateY(-15px);
   }
+
   .content{
     font-size: 13px;
     color: #a9a9a9;
     padding-left: 10px;
     overflow: hidden;
-    width: 100%;
+    width: 80%;
     word-break: keep-all;
     text-overflow: ellipsis;
+    height: 20px;
+    line-height: 20px;
+    transform: translateY(-5px);
   }
   .type{
     position: absolute;

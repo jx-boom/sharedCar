@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <indexMap ></indexMap>
+    <indexMap></indexMap>
     <navBar @go="go" :from="name" class="navBar"></navBar>
   </div>
 </template>

@@ -586,8 +586,8 @@
     margin-top: 50px;
     position: absolute;
     bottom: 50px;
-  width: 250px;
-  left: 50%;
+   width: 250px;
+   left: 53.5%;
   transform: translateX(-170px);
   }
 .satis{

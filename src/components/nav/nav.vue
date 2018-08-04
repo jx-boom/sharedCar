@@ -38,13 +38,9 @@
       }
     },
     'onShow'(){
-      console.log("nav onShow");
       http.getMessageList((res) => {
-        console.log(res);
         this.unread= false;
         for(let msg of res.data){
-          console.log("msg");
-          console.log(msg.isRead);
           if(msg.isRead == 0){
             this.unread= true;
           }
@@ -56,8 +52,6 @@
     },
 
     mounted(){
-      console.log(this);
-      console.log("this");
       http.getMessageList((res) => {
 
         for(let msg of res.data){

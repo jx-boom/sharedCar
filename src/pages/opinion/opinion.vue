@@ -48,11 +48,41 @@
     return m+'.'+d;
   },
       opinionSave(){
+
+        if( this.opinion.length==0){
+          wx.showToast({
+            title: '请输入内容',
+            icon: 'none',
+            duration: 2000
+          });
+
+          return
+        }
        let data ={
          'conmessage': this.opinion
-       }
+       };
+
+
+
+        this.opinion='';
         http.opinionSave(data,(res) => {
+          if(res.code!=0){
+            wx.showToast({
+              title: '提交失败',
+              icon: 'none',
+              duration: 2000
+            });
+return
+          }
           http.getOpinionList((res) => {
+            if(res.code!=0){
+              wx.showToast({
+                title: '提交失败',
+                icon: 'none',
+                duration: 2000
+              });
+ return
+            }
             this.opinionList = res.data;
             for(var op of this.opinionList){
               op.createDate= this.transTime(op.CreateDate)
@@ -93,7 +123,7 @@
     margin-top: 30px;
   }
   .content{
-    font-size: 15px;
+    font-size: 12.5px;
     border-radius: 2px;
     border: solid 0.5px #e0e6ec;
     padding-top: 18px;
@@ -114,6 +144,8 @@
     padding: 20px;
     line-height: 1.5;
     box-sizing: border-box;
+    margin-top: 22.5px;
+    height: 130px;
   }
   .opinion{
     padding-left: 17px;

@@ -118,6 +118,13 @@ var delRollator= function(imeiId,fn) {
     fn(res)
   })
 };
+var defLocateInfo= function(fn) {
+  request('get', 'defLocateInfo',null,token).then(res=>{
+
+    reLog(res)
+    fn(res)
+  })
+};
 
 var clear= function() {
   token= null;
@@ -138,4 +145,5 @@ export default {
   getTrackDetial,
   delRollator,
   messageSave,
+  defLocateInfo,
   getCode  }

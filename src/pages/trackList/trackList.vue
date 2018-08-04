@@ -198,21 +198,39 @@
           console.log(res);
           console.log("search res");
 
-          function  transTime(stmp){
-            var time = new Date(stmp*1);
-            var now = new Date();
-            var m = time.getMonth()+1;
-            var d = time.getDate();
-
-            if(now.getMonth()+1==m){
-              if(time.getDate()==now.getDate()){
-                return '今天'
+          function transTime(day) {
+            let t= new Date(day*1),
+              h=  t.getHours()<10?'0'+t.getHours():t.getHours(),
+              s= t.getMinutes()<10?'0'+t.getMinutes():t.getMinutes(),
+              m= t.getMonth()+1,
+              d= t.getDate();
+            m= m<10?'0'+m:m;
+            d= d<10?'0'+d:d;
+            let now= new Date(),
+              nowh=  t.getHours()<10?'0'+t.getHours():t.getHours(),
+              nows= t.getMinutes()<10?'0'+t.getMinutes():t.getMinutes(),
+              nowm= t.getMonth()+1,
+              nowd= t.getDate();
+            nowm= nowm<10?'0'+nowm:nowm;
+            nowd= nowd<10?'0'+nowd:nowd;
+            if(t.getMonth()==new Date().getMonth()){
+              if(d==new Date().getDate()){
+                return '今天 '+ h+':'+s;
               }
-              if(time.getDate()==(now.getDate()-1)){
-                return '昨天'
+              let time= Date.parse(new Date('2018-'+nowm+'-'+nowd))-
+                Date.parse(new Date('2018-'+m+'-'+d));
+              if(time< 86400000){
+                return    '昨天 '+ h+':'+s;
+              }
+              else{
+                return m+'月'+d+'日'
+
               }
             }
-            return m+'.'+d;
+            else{
+              return m+'月'+d+'日'
+
+            }
           }
           if(res.code==0){
             console.log("res.code==0");
